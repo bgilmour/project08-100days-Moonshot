@@ -40,24 +40,27 @@ struct MissionView: View {
                     .padding()
 
                 ForEach(astronauts, id: \.role) { crewMember in
-                    HStack {
-                        Image(crewMember.astronaut.id)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxHeight: 60)
-                            .clipShape(Capsule())
-                            .overlay(Capsule().stroke(Color.primary, lineWidth: 1))
-                            .padding()
+                    NavigationLink(destination: AstronautView(astronaut: crewMember.astronaut)) {
+                        HStack {
+                            Image(crewMember.astronaut.id)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 60)
+                                .clipShape(Capsule())
+                                .overlay(Capsule().stroke(Color.primary, lineWidth: 1))
+                                .padding()
 
-                        VStack(alignment: .leading) {
-                            Text(crewMember.astronaut.name)
-                                .font(.headline)
-                            Text(crewMember.role)
-                                .foregroundColor(.secondary)
+                            VStack(alignment: .leading) {
+                                Text(crewMember.astronaut.name)
+                                    .font(.headline)
+                                Text(crewMember.role)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
                         }
-
-                        Spacer()
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
 
                 Spacer(minLength: 25)
