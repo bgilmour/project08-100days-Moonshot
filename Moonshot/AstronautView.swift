@@ -9,6 +9,17 @@ import SwiftUI
 
 struct AstronautView: View {
     let astronaut: Astronaut
+    let missions: [Mission]
+
+    init(astronaut: Astronaut) {
+        self.astronaut = astronaut
+
+        let missions: [Mission] = Bundle.main.decode("missions.json")
+
+        self.missions = missions.filter { mission in
+            mission.crew.first(where: {$0.name == astronaut.id}) != nil
+        }
+    }
 
     var body: some View {
         GeometryReader { geo in
@@ -22,6 +33,19 @@ struct AstronautView: View {
                     Text(astronaut.description)
                         .padding()
                         .layoutPriority(1)
+
+                    List(missions) { mission in
+                        Image(mission.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 44, height: 44)
+
+                        VStack(alignment: .leading) {
+                            Text(mission.displayName)
+                                .font(.headline)
+                            Text(mission.formattedLaunchDate)
+                        }
+                    }
                 }
             }
         }
@@ -33,6 +57,6 @@ struct AstronautView_Previews: PreviewProvider {
     static let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
 
     static var previews: some View {
-        AstronautView(astronaut: astronauts[0])
+        AstronautView(astronaut: astronauts[7])
     }
 }
