@@ -34,18 +34,23 @@ struct AstronautView: View {
                         .padding()
                         .layoutPriority(1)
 
-                    List(missions) { mission in
-                        Image(mission.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 44, height: 44)
+                    VStack(alignment: .leading) {
+                        Section(header: Text("Mission list").fontWeight(.bold)) {
+                            List(missions) { mission in
+                                Image(mission.image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 44, height: 44)
 
-                        VStack(alignment: .leading) {
-                            Text(mission.displayName)
-                                .font(.headline)
-                            Text(mission.formattedLaunchDate)
+                                VStack(alignment: .leading) {
+                                    Text(mission.displayName)
+                                        .font(.headline)
+                                    Text(mission.formattedLaunchDate)
+                                }
+                            }
                         }
                     }
+                    .padding(.horizontal)
                 }
             }
         }

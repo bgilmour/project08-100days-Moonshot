@@ -36,3 +36,9 @@ struct Mission: Codable, Identifiable {
         }
     }
 }
+
+extension Mission {
+    var crewIds: [String] {
+        crew.map { $0.name }
+    }
+}
