@@ -45,7 +45,7 @@ struct MissionView: View {
                             Image(crewMember.astronaut.id)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxHeight: 60)
+                                .frame(width: 83, height: 60)
                                 .clipShape(Capsule())
                                 .overlay(Capsule().stroke(Color.primary, lineWidth: 1))
                                 .padding()
@@ -60,7 +60,6 @@ struct MissionView: View {
                             Spacer()
                         }
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
 
                 Spacer(minLength: 25)
