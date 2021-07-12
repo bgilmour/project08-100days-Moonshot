@@ -30,11 +30,17 @@ struct MissionView: View {
     var body: some View {
         GeometryReader { geo in
             ScrollView(.vertical) {
-                Image(mission.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: geo.size.width * 0.7)
-                    .padding(.top)
+                VStack(spacing: 10) {
+                    Image(mission.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: geo.size.width * 0.7)
+                        .padding(.top)
+
+                    Text(mission.formattedLaunchDate)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                }
 
                 Text(mission.description)
                     .padding()
